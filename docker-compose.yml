@@ -7,14 +7,14 @@ services:
       shm_size: '1gb'
     image: algorithms:latest
     container_name: algorithms
-    env_file:
-      - .env
     cpus: 0.5
     mem_reservation: '250M'
     mem_limit: '1024M'
     init: true
     network_mode: host
     restart: unless-stopped
+    env_file:
+      - .env    
     volumes:
       - ${HOME}/.ssh:/tmp/.ssh:ro
       - .:/algorithms
