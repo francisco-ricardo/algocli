@@ -30,13 +30,22 @@ def twoNumberSum(array, targetSum):
     Notes
     -----
     - The camel case is not commom for naming funcion in Python.
-      But it seems like it is a standard on the Algo Expert.
-      Then I decided to follow the Algo Exert standard and 
+      But it seems like it is a standard for Algo Expert.
+      So I decided to follow the Algo Exert standard and 
       naming the functions using camel case.
+    - As Algo Expert asks for only one function I decided to 
+      create helper functions inside the main function
+      instead of create them out of the main function.
 
     '''
-
-    def _tuplesGenerator(array):
+    def _pairsGenerator(array):
+        '''
+        Generator function that receives an array as input 
+        and yield tuples of pairs of elements.
+        
+        Example:
+        [1, 2, 3] -> ((1, 2), (1, 3), (2, 3))
+        '''
         pair_heads_index = [x for x in range(0, (len(array) - 1))]
         pair_tails_index = [x for x in range(1, len(array))]
         for i in pair_heads_index:
@@ -46,17 +55,28 @@ def twoNumberSum(array, targetSum):
                 yield(array[i], array[j],)
 
 
-    def _pairSum(pairs_array, target_sum):
-        for pair in pairs_array:
-            if (pair[0] + pair[1] == target_sum):
+    def _pairSum(pairsArray, targetSum):
+        '''
+        Helper function that receives two arguments:
+        1. Array of tuples (integers)
+        2. Target sum (integer)
+        
+        Each tuple has two integers. The function loops over the array.
+        If a tuple sum up to the target sum, the function returns the 
+        two elements as an array.
+        If no tuple sum up to the target sum, the function returns an 
+        empty array.        
+        '''
+        for pair in pairsArray:
+            if (pair[0] + pair[1] == targetSum):
                 return [pair[0], pair[1]]
         else:
             return []
 
         
+    # Main
+    pairsArray = [x for x in _pairsGenerator(array)]
+    print(pairsArray)
 
-    pairs_array = [x for x in _tuplesGenerator(array)]
-    print(pairs_array)
-
-    result = _pairSum(pairs_array, targetSum)
+    result = _pairSum(pairsArray, targetSum)
     print(result)
