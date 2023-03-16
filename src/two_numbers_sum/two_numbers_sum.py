@@ -18,7 +18,7 @@ def twoNumberSum(array, targetSum):
     '''
     The function receives an array and an integer as parameters.
     If any two numbers in the input array sum up to the target sum, 
-    the function should return them in an array, in any order. 
+    it should return them in an array, in any order. 
     If no two number sum up to the target sum, the function should 
     return an empty array.
 
@@ -29,15 +29,16 @@ def twoNumberSum(array, targetSum):
 
     Notes
     -----
-    - The camel case is not commom for naming funcion in Python.
-      But it seems like it is a standard for Algo Expert.
-      So I decided to follow the Algo Exert standard and 
-      naming the functions using camel case.
-    - As Algo Expert asks for only one function I decided to 
-      create helper functions inside the main function
-      instead of create them out of the main function.
+    - The camel case is not common for naming functions in Python. 
+      But it seems like it is a standard for Algo Expert. 
+      So I decided to follow the Algo Exert standard and name the 
+      functions using camel case.
+    - Algo Expert asks for only one function for the solution. 
+      They even indicated the name for the function. So, I decided to 
+      create only one function and create helper functions inside it.
 
     '''
+    # Helper function
     def _pairsGenerator(array):
         '''
         Generator function that receives an array as input 
@@ -55,6 +56,7 @@ def twoNumberSum(array, targetSum):
                 yield(array[i], array[j],)
 
 
+    # Helper function
     def _pairSum(pairsArray, targetSum):
         '''
         Helper function that receives two arguments:
