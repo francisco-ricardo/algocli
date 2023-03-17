@@ -34,7 +34,7 @@ def twoNumberSum(array, targetSum):
       So I decided to follow the Algo Exert standard and name the 
       functions using camel case.
     - Algo Expert asks for only one function for the solution. 
-      They even indicated the name for the function. So, I decided to 
+      They even indicated the name of the function. So, I decided to 
       create only one function and create helper functions inside it.
 
     '''
