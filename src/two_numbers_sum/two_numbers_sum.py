@@ -78,7 +78,5 @@ def twoNumberSum(array, targetSum):
         
     # Main
     pairsArray = [x for x in _pairsGenerator(array)]
-    print(pairsArray)
-
     result = _pairSum(pairsArray, targetSum)
-    print(result)
+    return result
