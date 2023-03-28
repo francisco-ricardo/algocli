@@ -39,7 +39,7 @@ def twoNumberSum(array, targetSum):
     - The camel case is not common for naming functions and variables 
       in Python. 
       But it seems like it is a standard for Algo Expert. 
-      So I decided to follow the Algo Exert standard and name the 
+      So I decided to follow the Algo Expert standard and name the 
       variables using camel case.
 
     '''
