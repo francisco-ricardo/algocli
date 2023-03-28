@@ -15,14 +15,8 @@ RUN git config --global user.name "francisco" && \
     git config --global user.email "franciscoricardo.dev@gmail.com." && \
     git config --global core.editor "vim"
 
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
-RUN chmod 0755 /usr/local/bin/docker-entrypoint.sh
-
-COPY docker-cmd-script.sh /usr/local/bin/docker-cmd-script.sh
-RUN chmod 0755 /usr/local/bin/docker-cmd-script.sh
-
-ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["/usr/local/bin/docker-cmd-script.sh"]
+ENTRYPOINT ["/algorithms/scripts/docker-entrypoint.sh"]
+CMD ["/algorithms/scripts/docker-cmd-script.sh"]
 
 # EOF
 
