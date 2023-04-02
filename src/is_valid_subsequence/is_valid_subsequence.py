@@ -45,3 +45,5 @@ def isValidSubsequence(array, sequence):
             sequenceIndex += 1
 
     return (sequenceIndex == len(sequence))
+
+# EOF
