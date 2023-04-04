@@ -5,8 +5,13 @@ against all other teams. Only two teams compete against each other at
 a time, and for each competition, one team is designated the home team,
 while the other team is the away team. In each competion there is always
 one winner and one loser; there are no ties. A tem receives 3 points if
-if wins and 0 points if is loses. The winner of the tournament is the 
+it wins and 0 points if it loses. The winner of the tournament is the 
 team that receives the most amount of points.
+
+Example:
+competitions: [['HTML', 'C#'], ['C#', 'Python'], ['Python', 'HTML']]
+results: [0, 0, 1]
+output: 'Python'
 
 '''
 
@@ -31,10 +36,13 @@ def tournamentWinner(competitions, results):
 
     Approach
     ---------
-
+    Iterate over the input arrays and accumulate the sum of  
+    the points for each team in a hash table (dictionary).
+    Save the team name with more points in a variable and 
+    return it at the end.
     
     Time: O(n)
-    Space: O(k)
+    Space: O(k), where k is the number of teams in the hash
 
     Notes
     -----
