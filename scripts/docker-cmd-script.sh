@@ -1,7 +1,5 @@
-#!/bin/bash
+#!/bin/sh
 
-#tail -f /dev/null
-
-exec sh -c "while true; do sleep 1; done"
+while true; do sleep 1; done
 
 # EOF
