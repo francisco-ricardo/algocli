@@ -2,8 +2,8 @@
 Given an array of positive integers representing the values of coins
 in your possession, write a function that returns the minimum amount
 of change (the minimum sum of money) that you can not create.
-The given coins can have any positive integer value and are not 
-necessarily unique (i.e., you can have multiple coins of the same 
+The given coins can have any positive integer value and are not
+necessarily unique (i.e., you can have multiple coins of the same
 value).
 
 Examples:
@@ -19,7 +19,7 @@ output = 1
 '''
 
 
-def nonConstructibleChange(coins):
+def non_constructible_change(coins):
     '''
     Receives an array of coins and returns the minimum amount of change
     that can not be created with the coins.
@@ -40,7 +40,7 @@ def nonConstructibleChange(coins):
     u = the array of coins
     n = a coin
 
-    The algorithm to define the minimum change is based on the rules 
+    The algorithm to define the minimum change is based on the rules
     below:
 
     v > c + 1 => c + 1    (1)
@@ -55,8 +55,8 @@ def nonConstructibleChange(coins):
 
     Notes
     -----
-    - Following the Camel Case standard for naming functions and variables, 
-      despite that the Snake Case is more common in Python coding.    
+    - Following the Camel Case standard for naming functions and variables,
+      despite that the Snake Case is more common in Python coding.
 
     '''
     coins.sort()
