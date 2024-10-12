@@ -2,7 +2,9 @@ FROM python:latest
 
 RUN apt update -y && apt install -y \
     build-essential \
+    valgrind \
     vim \
+    default-jdk \
     && rm -Rf /var/lib/apt/lists/*
 
 RUN python -m pip install --upgrade pip && \
