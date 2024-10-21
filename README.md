@@ -47,7 +47,7 @@ This repository serves as a collection of algorithmic challenges and their solut
 
 - src/python: Contains the algorithmic solutions in Python. Each directory in src/python corresponds to a specific coding challenge. Each problem is self-contained, with its solution located inside its own folder.
 
-- bin: Contains the program to test the algorithm from the command line. The name of the program correponds to the specific coding challege.
+- bin: Contains programs to test the algorithms from the command line. The name of each program corresponds to a specific coding challenge.
 
 ## Getting Started
 
