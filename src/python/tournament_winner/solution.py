@@ -5,7 +5,7 @@ against all other teams. Only two teams compete against each other at
 a time, and for each competition, one team is designated the home team,
 while the other team is the away team. In each competion there is always
 one winner and one loser; there are no ties. A tem receives 3 points if
-it wins and 0 points if it loses. The winner of the tournament is the 
+it wins and 0 points if it loses. The winner of the tournament is the
 team that receives the most amount of points.
 
 Example:
@@ -15,14 +15,14 @@ output: 'Python'
 
 '''
 
-def tournamentWinner(competitions, results):
+def run(competitions, results):
     '''
     Returns the winner of the tournament.
 
-    The competitions array has elements in the form of 
+    The competitions array has elements in the form of
     [home_team, away_team], where each team is a string representing
     the name of the team. The results array contains information
-    about the winner of each corresponding competition in the 
+    about the winner of each corresponding competition in the
     competitions array, where results[i] denotes the winner of
     competitions[i], where a 1 in the results array means that the
     home team in the corresponding competition won and a 0 means that
@@ -36,18 +36,13 @@ def tournamentWinner(competitions, results):
 
     Approach
     ---------
-    Iterate over the input arrays and accumulate the sum of  
+    Iterate over the input arrays and accumulate the sum of
     the points for each team in a hash table (dictionary).
-    Save the team name with more points in a variable and 
+    Save the team name with more points in a variable and
     return it at the end.
-    
+
     Time: O(n)
     Space: O(k), where k is the number of teams in the hash
-
-    Notes
-    -----
-    - Following the Camel Case standard for naming functions and variables, 
-      despite that the Snake Case is more common in Python coding.
 
     '''
     HOME_TEAM_WON = 1
@@ -65,10 +60,10 @@ def tournamentWinner(competitions, results):
             winnerTeam = homeTeam
         else:
             winnerTeam = awayTeam
-            
+
         if (winnerTeam not in scoresDict):
             scoresDict[winnerTeam] = 0
-        
+
         scoresDict[winnerTeam] += WINNER_POINTS
 
         if (scoresDict[winnerTeam] > scoresDict[bestTeam]):

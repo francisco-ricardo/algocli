@@ -19,7 +19,7 @@ output = 1
 '''
 
 
-def non_constructible_change(coins):
+def run(coins):
     '''
     Receives an array of coins and returns the minimum amount of change
     that can not be created with the coins.
@@ -52,11 +52,6 @@ def non_constructible_change(coins):
 
     Time: O(n log n)
     Space: O(1)
-
-    Notes
-    -----
-    - Following the Camel Case standard for naming functions and variables,
-      despite that the Snake Case is more common in Python coding.
 
     '''
     coins.sort()

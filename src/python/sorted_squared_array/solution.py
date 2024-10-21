@@ -11,7 +11,7 @@ output = [1, 4, 9, 25, 36, 64, 81, 100]
 '''
 
 
-def sortedSquaredArray(array):
+def run(array):
     '''
     Receives a sorted array as input and returns a new sorted array
     with the squared values.
@@ -24,19 +24,14 @@ def sortedSquaredArray(array):
     ---------
     Defines a reference for the smaller values (head) and a referece
     for the grater values (tail), assuming the list is sorted.
-    Traverses the input array in reverse order and compares the head 
-    value against the tail value. The greater value is placed into the 
-    output array in the current position. The current index is 
-    decremented. Either the head index or the tail index is moved 
+    Traverses the input array in reverse order and compares the head
+    value against the tail value. The greater value is placed into the
+    output array in the current position. The current index is
+    decremented. Either the head index or the tail index is moved
     according to the comparison.
 
     Time: O(n)
     Space: O(n)
-
-    Notes
-    -----
-    - Following the Camel Case standard for naming functions and variables, 
-      despite that the Snake Case is more common in Python coding.
 
     '''
     headIndex = 0

@@ -13,12 +13,12 @@ order to obtain the target sum.
 
 '''
 
-def twoNumberSum(array, targetSum):
+def run(array, targetSum):
     '''
     The function receives an array and an integer as parameters.
-    If any two numbers in the input array sum up to the target sum, 
-    it should return them in an array, in any order. 
-    If no two number sum up to the target sum, the function should 
+    If any two numbers in the input array sum up to the target sum,
+    it should return them in an array, in any order.
+    If no two number sum up to the target sum, the function should
     return an empty array.
 
     Approach
@@ -34,11 +34,6 @@ def twoNumberSum(array, targetSum):
     1. array: input array (integers)
     2. targetSum: the target value (integer) for testing the input array
 
-    Notes
-    -----
-    - Following the Camel Case standard for naming functions and variables, 
-      despite that the Snake Case is more common in Python coding.
-
     '''
     potentialNums = set()
     for i in array:
@@ -47,7 +42,7 @@ def twoNumberSum(array, targetSum):
             return [i, potentialNum]
         else:
             potentialNums.add(i)
-    
+
     return []
 
 # EOF
