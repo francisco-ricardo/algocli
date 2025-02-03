@@ -5,7 +5,7 @@ first one.
 
 '''
 
-def run(array, sequence):
+def run(array: list[int], sequence: list[int]) -> bool:
     '''
     Checks if the second array is a subsequence of the
     first one.

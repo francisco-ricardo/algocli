@@ -3,6 +3,7 @@
 import argparse
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
+import re
 
 def main():
     parser = argparse.ArgumentParser(description='Algorithm CLI')
@@ -28,6 +29,10 @@ def main():
         subsequence = args.subsequence
         result = is_valid_subsequence(sequence, subsequence)
         print(f'Is valid subsequence: {result}')
+
+# write function here that receives a string containing integers separated by commas (and, eventually with spaces before and after the commas) and retunrns a list of integers  
+def parse_int_list(s):
+    return [int(item) for item in re.split(r'\s*,\s*', s)]
 
 if __name__ == '__main__':
     main()

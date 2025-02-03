@@ -19,7 +19,7 @@ output = 1
 '''
 
 
-def run(coins):
+def run(coins: list[int]) -> int:
     '''
     Receives an array of coins and returns the minimum amount of change
     that can not be created with the coins.
