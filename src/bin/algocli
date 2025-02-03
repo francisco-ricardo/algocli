@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+
+import argparse
+from algorithms.is_valid_subsequence import run as is_valid_subsequence
+from algorithms.non_constructible_change import run as non_constructible_change
+
+def main():
+    parser = argparse.ArgumentParser(description='Algorithm CLI')
+    subparsers = parser.add_subparsers(dest='command')
+
+    # Sub-command: is_valid_subsequence
+    parser_is_valid_subsequence = subparsers.add_parser('is_valid_subsequence', help='Check if a sequence is a valid subsequence')
+    parser_is_valid_subsequence.add_argument('sequence', type=str, help='The sequence to check')
+    parser_is_valid_subsequence.add_argument('subsequence', type=str, help='The subsequence to validate')
+    # Sub-command: non_constructible_change
+    parser_non_constructible_change = subparsers.add_parser('non_constructible_change', help='Find the minimum non-constructible change')
+    parser_non_constructible_change.add_argument('coins', type=lambda s: [int(item) for item in s.split(',')], help='List of coins separated by comma')
+    
+    args = parser.parse_args()
+
+    if args.command == 'non_constructible_change':
+        coins = args.coins
+        result = non_constructible_change(coins)
+        print(f'Minimum non-constructible change: {result}')
+    
+    elif args.command == 'is_valid_subsequence':
+        sequence = args.sequence
+        subsequence = args.subsequence
+        result = is_valid_subsequence(sequence, subsequence)
+        print(f'Is valid subsequence: {result}')
+
+if __name__ == '__main__':
+    main()
