@@ -4,6 +4,8 @@ import argparse
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
 import re
+import unittest
+
 
 def main():
     parser = argparse.ArgumentParser(description='Algorithm CLI')
@@ -13,26 +15,54 @@ def main():
     parser_is_valid_subsequence = subparsers.add_parser('is_valid_subsequence', help='Check if a sequence is a valid subsequence')
     parser_is_valid_subsequence.add_argument('sequence', type=str, help='The sequence to check')
     parser_is_valid_subsequence.add_argument('subsequence', type=str, help='The subsequence to validate')
+    
     # Sub-command: non_constructible_change
     parser_non_constructible_change = subparsers.add_parser('non_constructible_change', help='Find the minimum non-constructible change')
-    parser_non_constructible_change.add_argument('coins', type=lambda s: [int(item) for item in s.split(',')], help='List of coins separated by comma')
+    parser_non_constructible_change.add_argument('coins', type=str, help='List of coins separated by comma')
+
+    # Sub-command: test
+    parser_test = subparsers.add_parser('test', help='Run tests for the algorithms')
     
     args = parser.parse_args()
 
     if args.command == 'non_constructible_change':
-        coins = args.coins
+        coins = parse_int_list(args.coins)
         result = non_constructible_change(coins)
         print(f'Minimum non-constructible change: {result}')
     
     elif args.command == 'is_valid_subsequence':
-        sequence = args.sequence
-        subsequence = args.subsequence
+        sequence = parse_int_list(args.sequence)
+        subsequence = parse_int_list(args.subsequence)
         result = is_valid_subsequence(sequence, subsequence)
         print(f'Is valid subsequence: {result}')
 
-# write function here that receives a string containing integers separated by commas (and, eventually with spaces before and after the commas) and retunrns a list of integers  
-def parse_int_list(s):
+    elif args.command == 'test':
+        test()        
+
+
+def parse_int_list(s: str) -> list[int]:
     return [int(item) for item in re.split(r'\s*,\s*', s)]
+
+def test():
+    class TestIsValidSubsequence(unittest.TestCase):
+        def test_example_1(self):
+            self.assertTrue(is_valid_subsequence([1, 2, 3, 4], [2, 4]))
+
+        def test_example_2(self):
+            self.assertFalse(is_valid_subsequence([1, 2, 3, 4], [4, 2]))
+
+        def test_example_3(self):
+            self.assertTrue(is_valid_subsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, 10]))
+
+        def test_example_4(self):
+            self.assertTrue(is_valid_subsequence([5, 1, 22, 25, 6, -1, 8, 10], [5, 1, 22, 6, -1, 8, 10]))
+
+        def test_example_5(self):
+            self.assertFalse(is_valid_subsequence([5, 1, 22, 25, 6, -1, 8, 10], [5, 1, 22, 6, -1, 8, 11]))
+
+    suite = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
+    unittest.TextTestRunner().run(suite)
+
 
 if __name__ == '__main__':
     main()
