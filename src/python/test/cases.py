@@ -3,6 +3,7 @@ import unittest
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
 from algorithms.sorted_squared_array import run as sorted_squared_array
+from algorithms.two_numbers_sum import run as two_numbers_sum
 
 class TestIsValidSubsequence(unittest.TestCase):
     def test_example_1(self):
@@ -70,3 +71,36 @@ class TestSortedSquaredArray(unittest.TestCase):
         array = [-4, -1, 0, 3, 10]
         expected_output = [0, 1, 9, 16, 100]
         self.assertEqual(sorted_squared_array(array), expected_output)
+
+
+class TestTwoNumbersSum(unittest.TestCase):
+
+    def test_example_1(self):
+        array = [2, 7, 11, 15]
+        target = 9
+        expected_output = [2, 7]    
+        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+
+    def test_example_2(self):
+        array = [3, 2, 4]
+        target = 6
+        expected_output = [2, 4]
+        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+
+    def test_example_3(self):
+        array = [3, 3]
+        target = 6
+        expected_output = [3, 3]
+        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+
+    def test_example_4(self):
+        array = [1, 2, 3, 4, 5]
+        target = 8
+        expected_output = [3, 5]
+        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+
+    def test_example_5(self):
+        array = [0, -1, 2, -3, 1]
+        target = -2
+        expected_output = [1, -3]
+        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
