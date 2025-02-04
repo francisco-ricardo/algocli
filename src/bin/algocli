@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 
 import argparse
-from algorithms.is_valid_subsequence import run as is_valid_subsequence
-from algorithms.non_constructible_change import run as non_constructible_change
 import re
 import unittest
+
+from algorithms.is_valid_subsequence import run as is_valid_subsequence
+from algorithms.non_constructible_change import run as non_constructible_change
+from test.cases import TestIsValidSubsequence
+from test.cases import TestNonConstructibleChange
 
 
 def main():
@@ -43,25 +46,13 @@ def main():
 def parse_int_list(s: str) -> list[int]:
     return [int(item) for item in re.split(r'\s*,\s*', s)]
 
+
 def test():
-    class TestIsValidSubsequence(unittest.TestCase):
-        def test_example_1(self):
-            self.assertTrue(is_valid_subsequence([1, 2, 3, 4], [2, 4]))
+    suite1 = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
+    suite2 = unittest.TestLoader().loadTestsFromTestCase(TestNonConstructibleChange)
 
-        def test_example_2(self):
-            self.assertFalse(is_valid_subsequence([1, 2, 3, 4], [4, 2]))
-
-        def test_example_3(self):
-            self.assertTrue(is_valid_subsequence([5, 1, 22, 25, 6, -1, 8, 10], [1, 6, -1, 10]))
-
-        def test_example_4(self):
-            self.assertTrue(is_valid_subsequence([5, 1, 22, 25, 6, -1, 8, 10], [5, 1, 22, 6, -1, 8, 10]))
-
-        def test_example_5(self):
-            self.assertFalse(is_valid_subsequence([5, 1, 22, 25, 6, -1, 8, 10], [5, 1, 22, 6, -1, 8, 11]))
-
-    suite = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
-    unittest.TextTestRunner().run(suite)
+    all_tests= unittest.TestSuite([suite1, suite2])
+    unittest.TextTestRunner().run(all_tests)
 
 
 if __name__ == '__main__':
