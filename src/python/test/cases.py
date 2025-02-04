@@ -2,6 +2,7 @@ import unittest
 
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
+from algorithms.sorted_squared_array import run as sorted_squared_array
 
 class TestIsValidSubsequence(unittest.TestCase):
     def test_example_1(self):
@@ -42,3 +43,30 @@ class TestNonConstructibleChange(unittest.TestCase):
         expected_output = 10
         self.assertEqual(non_constructible_change(coins), expected_output)
 
+
+class TestSortedSquaredArray(unittest.TestCase):
+
+    def test_example_1(self):
+        array = [-10, 1, 2, 3, 5, 6, 8, 9]
+        expected_output = [1, 4, 9, 25, 36, 64, 81, 100]
+        self.assertEqual(sorted_squared_array(array), expected_output)
+
+    def test_example_2(self):
+        array = [-7, -3, 2, 3, 11]
+        expected_output = [4, 9, 9, 49, 121]
+        self.assertEqual(sorted_squared_array(array), expected_output)
+
+    def test_example_3(self):
+        array = [0, 2, 3, 10]
+        expected_output = [0, 4, 9, 100]        
+        self.assertEqual(sorted_squared_array(array), expected_output)
+
+    def test_example_4(self):
+        array = [-5, -3, -2, -1]
+        expected_output = [1, 4, 9, 25]
+        self.assertEqual(sorted_squared_array(array), expected_output)
+
+    def test_example_5(self):
+        array = [-4, -1, 0, 3, 10]
+        expected_output = [0, 1, 9, 16, 100]
+        self.assertEqual(sorted_squared_array(array), expected_output)

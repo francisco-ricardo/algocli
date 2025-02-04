@@ -6,8 +6,11 @@ import unittest
 
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
+from algorithms.sorted_squared_array import run as sorted_squared_array
+
 from test.cases import TestIsValidSubsequence
 from test.cases import TestNonConstructibleChange
+from test.cases import TestSortedSquaredArray
 
 
 def main():
@@ -22,6 +25,10 @@ def main():
     # Sub-command: non_constructible_change
     parser_non_constructible_change = subparsers.add_parser('non_constructible_change', help='Find the minimum non-constructible change')
     parser_non_constructible_change.add_argument('coins', type=str, help='List of coins separated by comma')
+
+    # Sub-command: sorted_squared_array
+    parser_sorted_squared_array = subparsers.add_parser('sorted_squared_array', help='Sort the squared array')
+    parser_sorted_squared_array.add_argument('array', type=str, help='List of integers separated by comma')
 
     # Sub-command: test
     parser_test = subparsers.add_parser('test', help='Run tests for the algorithms')
@@ -39,6 +46,11 @@ def main():
         result = is_valid_subsequence(sequence, subsequence)
         print(f'Is valid subsequence: {result}')
 
+    elif args.command == 'sorted_squared_array':
+        array = parse_int_list(args.array)
+        result = sorted_squared_array(array)
+        print(f'Sorted squared array: {result}')
+
     elif args.command == 'test':
         test()        
 
@@ -50,8 +62,9 @@ def parse_int_list(s: str) -> list[int]:
 def test():
     suite1 = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
     suite2 = unittest.TestLoader().loadTestsFromTestCase(TestNonConstructibleChange)
+    suite3 = unittest.TestLoader().loadTestsFromTestCase(TestSortedSquaredArray)
 
-    all_tests= unittest.TestSuite([suite1, suite2])
+    all_tests= unittest.TestSuite([suite1, suite2, suite3])
     unittest.TextTestRunner().run(all_tests)
 
 
