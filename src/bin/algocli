@@ -41,7 +41,7 @@ def main():
     # Sub-command: tournament_winner
     # TODO: Implement the tournament_winner algorithm
     parser_tournament_winner = subparsers.add_parser('tournament_winner', help='Find the tournament winner')
-    parser_tournament_winner.add_argument('competitions', type=str, help='List of competitions separated by comma')
+    parser_tournament_winner.add_argument('--input', '-i', nargs='+', type=str, action='append', help='Compeitition and the result')
 
     # Sub-command: test
     parser_test = subparsers.add_parser('test', help='Run tests for the algorithms')
@@ -70,15 +70,35 @@ def main():
         result = two_numbers_sum(numbers, target)
         print(f'Two numbers that sum to the target: {result}')
 
+    elif args.command == 'tournament_winner':
+        run_tournament_winner(args.input)
+
+
     elif args.command == 'test':
         test()        
 
+
+
+
+
+def run_tournament_winner(competitions: list[str]) -> None:
+    #args_list = parse_list(args)
+    #print(competitions)
+    for competition in competitions:
+        print(competition)
+
+
+
+    
+
+def parse_list(s: str) -> list[str]:
+    return [item for item in re.split(r'\s*,\s*', s)]
 
 def parse_int_list(s: str) -> list[int]:
     return [int(item) for item in re.split(r'\s*,\s*', s)]
 
 
-def test():
+def test() -> None:
     suite1 = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
     suite2 = unittest.TestLoader().loadTestsFromTestCase(TestNonConstructibleChange)
     suite3 = unittest.TestLoader().loadTestsFromTestCase(TestSortedSquaredArray)
