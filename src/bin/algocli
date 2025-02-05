@@ -75,17 +75,27 @@ def main():
 
 
     elif args.command == 'test':
-        test()        
+        run_test()        
 
 
 
 
+# TODO: Implement the run_tournament_winner function
+def run_tournament_winner(args: list[str]) -> None:
+    competitions = []
+    results = []
+    for arg in args:
+        parts = parse_list(arg[0])
+        if (len(parts) != 3):
+            raise ValueError('Invalid input')
+        competitions.append([parts[0], parts[1]])
+        results.append(int(parts[2]))
 
-def run_tournament_winner(competitions: list[str]) -> None:
-    #args_list = parse_list(args)
-    #print(competitions)
-    for competition in competitions:
-        print(competition)
+    print(competitions)
+    print(results)
+
+    result = tournament_winner(competitions, results)
+    print(f'Tournament winner: {result}')
 
 
 
@@ -98,7 +108,7 @@ def parse_int_list(s: str) -> list[int]:
     return [int(item) for item in re.split(r'\s*,\s*', s)]
 
 
-def test() -> None:
+def run_test() -> None:
     suite1 = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
     suite2 = unittest.TestLoader().loadTestsFromTestCase(TestNonConstructibleChange)
     suite3 = unittest.TestLoader().loadTestsFromTestCase(TestSortedSquaredArray)
