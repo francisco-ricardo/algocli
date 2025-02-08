@@ -115,25 +115,25 @@ class TestTournamentWinner(unittest.TestCase):
         self.assertEqual(tournament_winner(competitions, results), expected_output)
 
     def test_example_2(self):
-        competitions = [['A', 'B'], ['B', 'C'], ['C', 'A']]
+        competitions = [['Python', 'Perl'], ['Perl', 'C'], ['C', 'Python']]
         results = [1, 1, 1]
-        expected_output = 'A'
+        expected_output = 'Python'
         self.assertEqual(tournament_winner(competitions, results), expected_output)
 
     def test_example_3(self):
-        competitions = [['A', 'B'], ['B', 'C'], ['C', 'A']]
+        competitions = [['Rust', 'C'], ['C', 'Java'], ['Java', 'Rust']]
         results = [0, 0, 0]
-        expected_output = 'C'
+        expected_output = 'Java'
         self.assertEqual(tournament_winner(competitions, results), expected_output)
 
     def test_example_4(self):
-        competitions = [['A', 'B'], ['A', 'C'], ['B', 'C']]
+        competitions = [['Perl', 'Bash'], ['Perl', 'Python'], ['Bash', 'Python']]
         results = [1, 1, 1]
-        expected_output = 'A'
+        expected_output = 'Perl'
         self.assertEqual(tournament_winner(competitions, results), expected_output)
         
     def test_example_5(self):
-        competitions = [['A', 'B'], ['A', 'C'], ['B', 'C']]
+        competitions = [['Python', 'PHP'], ['Python', 'Javascript'], ['PHP', 'Javascript']]
         results = [0, 1, 0]
-        expected_output = 'C'
+        expected_output = 'PHP'
         self.assertEqual(tournament_winner(competitions, results), expected_output)
