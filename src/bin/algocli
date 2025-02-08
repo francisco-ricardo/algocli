@@ -1,7 +1,14 @@
 #!/usr/bin/env python3
+"""
+Algorithm CLI
+
+This script provides a command-line interface (CLI) for various algorithmic functions. 
+It allows the user to run the algorithms and unit tests from the command line.
+"""
 
 import argparse
 import re
+from typing import Generator
 import unittest
 
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
@@ -18,118 +25,203 @@ from test.cases import TestTournamentWinner
 
 
 def main():
+    """
+    Parses command-line arguments and executes the corresponding function.
+    """
 
-    # Command line arguments handling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # Command line arguments definition
+    # >>>
+
     parser = argparse.ArgumentParser(description='Algorithm CLI')
     subparsers = parser.add_subparsers(dest='command')
 
-    # Sub-command: is_valid_subsequence
+    # Sub-command: is_valid_subsequence    
     parser_is_valid_subsequence = subparsers.add_parser('is_valid_subsequence', 
-                                                        help='Check if a sequence is valid')
+        help='Check if a sequence is a valid subsequence of another sequence',
+        description="""Check if a sequence is a valid subsequence of another sequence.
+                    Example: algocli is_valid_subsequence '1,2,3,4' '2,4'""")
     parser_is_valid_subsequence.add_argument('sequence', type=str, 
-                                             help='The sequence to check')
+        help="The sequence to check. Example: '1,2,3,4'")
     parser_is_valid_subsequence.add_argument('subsequence', type=str, 
-                                             help='The subsequence to validate')
+        help="The subsequence to validate. Example: '2,4'")
     
     # Sub-command: non_constructible_change
     parser_non_constructible_change = subparsers.add_parser('non_constructible_change', 
-                                                            help='Find the min non-constructible change')
-    parser_non_constructible_change.add_argument('coins', type=str, help='List of coins separated by comma')
+        help='Find the min non-constructible change that cannot be created with given coins',
+        description="""Find the minimum non-constructible change that cannot be created with given coins.
+                    Example: algocli non_constructible_change '1,2,5'""")
+    parser_non_constructible_change.add_argument('coins', type=str, 
+        help="List of integers separated by comma. Example: '1,2,5'")
 
     # Sub-command: sorted_squared_array
-    parser_sorted_squared_array = subparsers.add_parser('sorted_squared_array', help='Sort the squared array')
-    parser_sorted_squared_array.add_argument('array', type=str, help='List of integers separated by comma')
+    parser_sorted_squared_array = subparsers.add_parser('sorted_squared_array', 
+        help='Return a sorted array of the squares of the input array',
+        description="""Return a sorted array of the squares of the input array.
+                    Example: algocli sorted_squared_array '4,-1,0,3,10'""",
+        epilog="""Note: If the first number in the list is negative, use a double dash (--) 
+        before the argument to avoid confusion with options. Example: -- '-4,-1,0,3,10'""")
+    parser_sorted_squared_array.add_argument('array', type=str,
+         help="List of integers separated by comma. Example: '4,-1,0,3,10'")
 
     # Sub-command: two_numbers_sum
-    parser_two_numbers_sum = subparsers.add_parser('two_numbers_sum', help='Find the two numbers that sum to the target')
-    parser_two_numbers_sum.add_argument('numbers', type=str, help='List of numbers separated by comma')
-    parser_two_numbers_sum.add_argument('target', type=int, help='The target sum')
+    parser_two_numbers_sum = subparsers.add_parser('two_numbers_sum', 
+        help='Find two numbers in the list that sum up to the target value',
+        description="""Find two numbers in the list that sum up to the target value.
+                    Example: algocli two_numbers_sum '3,5,-4,8,11,1,-1,6' 10""",
+        epilog="""Note: If the first number in the list is negative, use a double dash (--) 
+        before the argument to avoid confusion with options. Example: -- '-3,5,-4,8,11,1,-1,6'""")
+    parser_two_numbers_sum.add_argument('numbers', type=str, 
+        help="List of numbers separated by comma. Example: '3,5,-4,8,11,1,-1,6'")
+    parser_two_numbers_sum.add_argument('target', type=int, 
+        help='The target sum. Example: 10')
 
     # Sub-command: tournament_winner
-    # TODO: Implement the tournament_winner algorithm
-    parser_tournament_winner = subparsers.add_parser('tournament_winner', help='Find the tournament winner')
-    parser_tournament_winner.add_argument('--input', '-i', nargs='+', type=str, action='append', help='Compeitition and the result')
+    parser_tournament_winner = subparsers.add_parser('tournament_winner', 
+        help=' Determine the winner of a tournament based on competition results',
+        description="""Determine the winner of a tournament based on competition results.
+                    Example:
+                    algocli tournament_winner -i 'HTML,CSS,0' -i 'CSS,Python,1' -i 'Python,HTML,1'""")
+    parser_tournament_winner.add_argument('--input', '-i', nargs='+', type=str, action='append', 
+        help="""A string consisting of the home team, the away team and the result, separated by commas. 
+        Example: 'C#, Python, 1'""")
 
     # Sub-command: test
-    parser_test = subparsers.add_parser('test', help='Run tests for the algorithms')
+    parser_test = subparsers.add_parser('test', 
+        help='Run unit tests for the algorithms',
+        description='Run unit tests for the algorithms')
     
     args = parser.parse_args()
-    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    # <<
 
 
-    # Execute the selected command >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    # Execute the selected command
+    # >>>
+
     if args.command == 'non_constructible_change':
-        coins = parse_int_list(args.coins)
-        result = non_constructible_change(coins)
-        print(f'Minimum non-constructible change: {result}')
+        run_non_constructible_change(args)
     
     elif args.command == 'is_valid_subsequence':
-        sequence = parse_int_list(args.sequence)
-        subsequence = parse_int_list(args.subsequence)
-        result = is_valid_subsequence(sequence, subsequence)
-        print(f'Is valid subsequence: {result}')
+        run_is_valid_subsequence(args)
 
     elif args.command == 'sorted_squared_array':
-        array = parse_int_list(args.array)
-        result = sorted_squared_array(array)
-        print(f'Sorted squared array: {result}')
+        run_sorted_squared_array(args)
 
     elif args.command == 'two_numbers_sum':
-        numbers = parse_int_list(args.numbers)
-        target = args.target
-        result = two_numbers_sum(numbers, target)
-        print(f'Two numbers that sum to the target: {result}')
+        run_two_numbers_sum(args)
 
     elif args.command == 'tournament_winner':
         run_tournament_winner(args.input)
 
-
     elif args.command == 'test':
-        run_test()        
+        run_test()
 
-    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
+    # <<
 
 
-# TODO: Implement the run_tournament_winner function
+# Functions Definitions
+# >>>
+
+def run_non_constructible_change(args: str) -> None:
+    """
+    Executes the non_constructible_change algorithm.
+    """
+    coins: list[int] = parse_args_as_int(args.coins)
+    result: int = non_constructible_change(coins)
+    print(f'Minimum non-constructible change: {result}')
+
+
+def run_is_valid_subsequence(args: str) -> None:
+    """
+    Executes the is_valid_subsequence algorithm.
+    """
+    sequence: list[int] = parse_args_as_int(args.sequence)
+    subsequence: list[int] = parse_args_as_int(args.subsequence)
+    result: bool = is_valid_subsequence(sequence, subsequence)
+    print(f'Is valid subsequence: {result}')
+
+
+def run_sorted_squared_array(args: str) -> None:
+    """
+    Executes the sorted_squared_array algorithm.
+    """
+    array: list[int] = parse_args_as_int(args.array)
+    result: list[int] = sorted_squared_array(array)
+    print(f'Sorted squared array: {result}')
+
+
+def run_two_numbers_sum(args: str) -> None:
+    """
+    Executes the two_numbers_sum algorithm.
+    """
+    numbers: list[int] = parse_args_as_int(args.numbers)
+    target: int = args.target
+    result: list[int] = two_numbers_sum(numbers, target)
+    print(f'Two numbers that sum to the target: {result}')
+
+
 def run_tournament_winner(args: list[str]) -> None:
+    """
+    Executes the tournament_winner algorithm.
+    """
     competitions = []
     results = []
     for arg in args:
         try:
-            parts = parse_list(arg[0])
+            parts = parse_args_as_string(arg[0])
         except IndexError:
-            raise ValueError(f"Invalid input: {arg}")
+            raise ValueError(f'Invalid input: {arg}')
         else:
             if (len(parts) != 3):
-                raise ValueError(f"Invalid input: {arg}")
+                raise ValueError(f'Invalid input: {arg}')
         competitions.append([parts[0], parts[1]])
         results.append(int(parts[2]))
     result = tournament_winner(competitions, results)
     print(f'Tournament winner: {result}')
 
 
-
-    
-
-def parse_list(s: str) -> list[str]:
-    return [item for item in re.split(r'\s*,\s*', s)]
-
-def parse_int_list(s: str) -> list[int]:
-    return [int(item) for item in re.split(r'\s*,\s*', s)]
-
-
 def run_test() -> None:
+    """
+    Runs unit tests for all algorithms.
+    """
     suite1 = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
     suite2 = unittest.TestLoader().loadTestsFromTestCase(TestNonConstructibleChange)
     suite3 = unittest.TestLoader().loadTestsFromTestCase(TestSortedSquaredArray)
     suite4 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum)
     suite5 = unittest.TestLoader().loadTestsFromTestCase(TestTournamentWinner)
-
     all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5])
     unittest.TextTestRunner().run(all_tests)
+
+# <<
+
+
+# Helper functions
+# >>>
+
+def args_list_generator(args: str) -> Generator[str, None, None]:
+    """
+    Generates a list of arguments from a comma-separated string.
+    """
+    return (item for item in re.split(r'\s*,\s*', args))
+
+
+def parse_args_as_string(args: str) -> list[str]:
+    """
+    Parses a comma-separated string into a list of strings.
+    """
+    return [item for item in args_list_generator(args)]
+
+
+def parse_args_as_int(args: str) -> list[int]:
+    """
+    Parses a comma-separated string into a list of integers.
+    """
+    return [int(item) for item in args_list_generator(args)]
+
+# <<
 
 
 if __name__ == '__main__':
     main()
+
+# EOF
