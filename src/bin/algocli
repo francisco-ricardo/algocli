@@ -17,16 +17,22 @@ from test.cases import TestTwoNumbersSum
 
 
 def main():
+
+    # Command line arguments handling >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     parser = argparse.ArgumentParser(description='Algorithm CLI')
     subparsers = parser.add_subparsers(dest='command')
 
     # Sub-command: is_valid_subsequence
-    parser_is_valid_subsequence = subparsers.add_parser('is_valid_subsequence', help='Check if a sequence is a valid subsequence')
-    parser_is_valid_subsequence.add_argument('sequence', type=str, help='The sequence to check')
-    parser_is_valid_subsequence.add_argument('subsequence', type=str, help='The subsequence to validate')
+    parser_is_valid_subsequence = subparsers.add_parser('is_valid_subsequence', 
+                                                        help='Check if a sequence is valid')
+    parser_is_valid_subsequence.add_argument('sequence', type=str, 
+                                             help='The sequence to check')
+    parser_is_valid_subsequence.add_argument('subsequence', type=str, 
+                                             help='The subsequence to validate')
     
     # Sub-command: non_constructible_change
-    parser_non_constructible_change = subparsers.add_parser('non_constructible_change', help='Find the minimum non-constructible change')
+    parser_non_constructible_change = subparsers.add_parser('non_constructible_change', 
+                                                            help='Find the min non-constructible change')
     parser_non_constructible_change.add_argument('coins', type=str, help='List of coins separated by comma')
 
     # Sub-command: sorted_squared_array
@@ -47,7 +53,10 @@ def main():
     parser_test = subparsers.add_parser('test', help='Run tests for the algorithms')
     
     args = parser.parse_args()
+    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
+
+    # Execute the selected command >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
     if args.command == 'non_constructible_change':
         coins = parse_int_list(args.coins)
         result = non_constructible_change(coins)
@@ -77,6 +86,8 @@ def main():
     elif args.command == 'test':
         run_test()        
 
+    # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
 
 
@@ -85,15 +96,15 @@ def run_tournament_winner(args: list[str]) -> None:
     competitions = []
     results = []
     for arg in args:
-        parts = parse_list(arg[0])
-        if (len(parts) != 3):
-            raise ValueError('Invalid input')
+        try:
+            parts = parse_list(arg[0])
+        except IndexError:
+            raise ValueError(f"Invalid input: {arg}")
+        else:
+            if (len(parts) != 3):
+                raise ValueError(f"Invalid input: {arg}")
         competitions.append([parts[0], parts[1]])
         results.append(int(parts[2]))
-
-    print(competitions)
-    print(results)
-
     result = tournament_winner(competitions, results)
     print(f'Tournament winner: {result}')
 
