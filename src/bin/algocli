@@ -14,13 +14,14 @@ import unittest
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
 from algorithms.sorted_squared_array import run as sorted_squared_array
-from algorithms.two_numbers_sum import run as two_numbers_sum
+from algorithms.two_numbers_sum import run as two_numbers_sum   
+from algorithms.two_numbers_sum_2 import run as two_numbers_sum_2
 from algorithms.tournament_winner import run as tournament_winner
 
 from test.cases import TestIsValidSubsequence
 from test.cases import TestNonConstructibleChange
 from test.cases import TestSortedSquaredArray
-from test.cases import TestTwoNumbersSum
+from test.cases import TestTwoNumbersSum2
 from test.cases import TestTournamentWinner
 
 
@@ -65,14 +66,26 @@ def main():
 
     # Sub-command: two_numbers_sum
     parser_two_numbers_sum = subparsers.add_parser('two_numbers_sum', 
-        help='Find two numbers in the list that sum up to the target value',
-        description="""Find two numbers in the list that sum up to the target value.
-                    Example: algocli two_numbers_sum '3,5,-4,8,11,1,-1,6' 10""",
+        help='Find the indices of the two numbers in the list that sum up to the target value',
+        description="""Find the indices of the two numbers in the list that sum up to the target value.
+                    Example: algocli two_numbers_sum_2 '3,5,-4,8,11,1,-1,6' 10""",
         epilog="""Note: If the first number in the list is negative, use a double dash (--) 
         before the argument to avoid confusion with options. Example: -- '-3,5,-4,8,11,1,-1,6'""")
     parser_two_numbers_sum.add_argument('numbers', type=str, 
         help="List of numbers separated by comma. Example: '3,5,-4,8,11,1,-1,6'")
     parser_two_numbers_sum.add_argument('target', type=int, 
+        help='The target sum. Example: 10')    
+    
+    # Sub-command: two_numbers_sum_2
+    parser_two_numbers_sum_2 = subparsers.add_parser('two_numbers_sum_2', 
+        help='Find two numbers in the list that sum up to the target value',
+        description="""Find two numbers in the list that sum up to the target value.
+                    Example: algocli two_numbers_sum_2 '3,5,-4,8,11,1,-1,6' 10""",
+        epilog="""Note: If the first number in the list is negative, use a double dash (--) 
+        before the argument to avoid confusion with options. Example: -- '-3,5,-4,8,11,1,-1,6'""")
+    parser_two_numbers_sum_2.add_argument('numbers', type=str, 
+        help="List of numbers separated by comma. Example: '3,5,-4,8,11,1,-1,6'")
+    parser_two_numbers_sum_2.add_argument('target', type=int, 
         help='The target sum. Example: 10')
 
     # Sub-command: tournament_winner
@@ -109,6 +122,9 @@ def main():
 
     elif args.command == 'two_numbers_sum':
         run_two_numbers_sum(args)
+
+    elif args.command == 'two_numbers_sum_2':
+        run_two_numbers_sum_2(args)
 
     elif args.command == 'tournament_winner':
         run_tournament_winner(args.input)
@@ -157,6 +173,16 @@ def run_two_numbers_sum(args: str) -> None:
     numbers: list[int] = parse_args_as_int(args.numbers)
     target: int = args.target
     result: list[int] = two_numbers_sum(numbers, target)
+    print(f'Indices of the two numbers that sum to the target: {result}')
+
+
+def run_two_numbers_sum_2(args: str) -> None:
+    """
+    Executes the two_numbers_sum_2 algorithm.
+    """
+    numbers: list[int] = parse_args_as_int(args.numbers)
+    target: int = args.target
+    result: list[int] = two_numbers_sum_2(numbers, target)
     print(f'Two numbers that sum to the target: {result}')
 
 
@@ -187,7 +213,7 @@ def run_test() -> None:
     suite1 = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
     suite2 = unittest.TestLoader().loadTestsFromTestCase(TestNonConstructibleChange)
     suite3 = unittest.TestLoader().loadTestsFromTestCase(TestSortedSquaredArray)
-    suite4 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum)
+    suite4 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum2)
     suite5 = unittest.TestLoader().loadTestsFromTestCase(TestTournamentWinner)
     all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5])
     unittest.TextTestRunner().run(all_tests)

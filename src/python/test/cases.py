@@ -4,6 +4,7 @@ from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
 from algorithms.sorted_squared_array import run as sorted_squared_array
 from algorithms.two_numbers_sum import run as two_numbers_sum
+from algorithms.two_numbers_sum_2 import run as two_numbers_sum_2
 from algorithms.tournament_winner import run as tournament_winner
 
 
@@ -66,32 +67,32 @@ class TestSortedSquaredArray(unittest.TestCase):
         self.assertEqual(sorted_squared_array(array), expected_output)
 
 
-class TestTwoNumbersSum(unittest.TestCase):
+class TestTwoNumbersSum2(unittest.TestCase):
     def test_example_1(self):
         array = [2, 7, 11, 15]
         target = 9
         expected_output = [2, 7]    
-        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+        self.assertCountEqual(two_numbers_sum_2(array, target), expected_output)
     def test_example_2(self):
         array = [3, 2, 4]
         target = 6
         expected_output = [2, 4]
-        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+        self.assertCountEqual(two_numbers_sum_2(array, target), expected_output)
     def test_example_3(self):
         array = [3, 3]
         target = 6
         expected_output = [3, 3]
-        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+        self.assertCountEqual(two_numbers_sum_2(array, target), expected_output)
     def test_example_4(self):
         array = [1, 2, 3, 4, 5]
         target = 8
         expected_output = [3, 5]
-        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+        self.assertCountEqual(two_numbers_sum_2(array, target), expected_output)
     def test_example_5(self):
         array = [0, -1, 2, -3, 1]
         target = -2
         expected_output = [1, -3]
-        self.assertCountEqual(two_numbers_sum(array, target), expected_output)
+        self.assertCountEqual(two_numbers_sum_2(array, target), expected_output)
 
 
 class TestTournamentWinner(unittest.TestCase):
@@ -120,3 +121,31 @@ class TestTournamentWinner(unittest.TestCase):
         results = [0, 1, 1]
         expected_output = 'PHP'
         self.assertEqual(tournament_winner(competitions, results), expected_output)
+
+
+class TestTwoNumbersSum(unittest.TestCase):
+    def test_example_1(self):
+        numbers = [2, 7, 11, 15]
+        target = 9
+        expected_output = [0, 1]
+        self.assertCountEqual(two_numbers_sum(numbers, target), expected_output)
+    def test_example_2(self):
+        numbers = [3, 2, 4]
+        target = 6
+        expected_output = [1, 2]
+        self.assertCountEqual(two_numbers_sum(numbers, target), expected_output)
+    def test_example_3(self):
+        numbers = [3, 3]
+        target = 6
+        expected_output = [0, 1]
+        self.assertCountEqual(two_numbers_sum(numbers, target), expected_output)
+    def test_example_4(self):
+        numbers = [1, 2, 3, 4, 5]
+        target = 8
+        expected_output = [2, 4]
+        self.assertCountEqual(two_numbers_sum(numbers, target), expected_output)
+    def test_example_5(self):
+        numbers = [0, -1, 2, -3, 1]
+        target = -2
+        expected_output = [3, 4]
+        self.assertCountEqual(two_numbers_sum(numbers, target), expected_output)    
