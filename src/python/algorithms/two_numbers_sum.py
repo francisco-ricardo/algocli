@@ -1,21 +1,23 @@
 
-# TODO: o algoritmo baseado em two pointers funcionaria somente se o array estivesse ordenado
-## implementar um novo algoritmo baseado em hashmap.
+# Given an array of integers, return indices of the two numbers such that they add up to a specific target.
+# You may assume that each input would have exactly one solution, and you may not use the same element twice.
 
 def run(nums: list[int], target: int) -> list[int]:
     '''
     The function receives an array and an integer as parameters.
-    If any two numbers in the input array sum up to the target sum,
+    If any two numbers in the input array add up to the target value,    
     it should return the corresponding indices, in any order.
-    If no two number sum up to the target sum, the function should
-    return an empty array.
+    If no two numbers add up to the target sum, the function should
+    return an empty list.
 
     Approach
     ---------
-    
+    Use a hash map (a dictionary in Python) to store visited elements indices.
+    For each number in the array, check whether target - nums[i] exists in the dictionary.
+    If it does, we found the pair and return their indices.    
 
     Time: O(n)
-    Space: O(1)
+    Space: O(n)
 
     Parameters
     -----------
@@ -23,28 +25,11 @@ def run(nums: list[int], target: int) -> list[int]:
     2. target: the target value (integer) for testing the input array
 
     '''
-
     potential_nums = dict()
-    for index in range(len(nums)):
-        potential_num = target - nums[index]
+    for index, num in enumerate(nums):
+        potential_num = target - num
         if (potential_num in potential_nums.keys()):
             return [index, potential_nums[potential_num]]
-        else:
-            potential_nums[potential_num] = index
+        potential_nums[num] = index
     return []
-
-
-    # left = 0
-    # right = len(nums) - 1
-    # while left < right:
-    #     current_sum = nums[left] + nums[right]
-    #     if (current_sum == target):
-    #         return [left, right]
-    #     elif (current_sum < target):
-    #         left += 1
-    #     else:
-    #         right -= 1
-
-    # return []
-
 

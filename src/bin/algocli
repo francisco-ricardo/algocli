@@ -21,6 +21,7 @@ from algorithms.tournament_winner import run as tournament_winner
 from test.cases import TestIsValidSubsequence
 from test.cases import TestNonConstructibleChange
 from test.cases import TestSortedSquaredArray
+from test.cases import TestTwoNumbersSum
 from test.cases import TestTwoNumbersSum2
 from test.cases import TestTournamentWinner
 
@@ -213,9 +214,10 @@ def run_test() -> None:
     suite1 = unittest.TestLoader().loadTestsFromTestCase(TestIsValidSubsequence)
     suite2 = unittest.TestLoader().loadTestsFromTestCase(TestNonConstructibleChange)
     suite3 = unittest.TestLoader().loadTestsFromTestCase(TestSortedSquaredArray)
-    suite4 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum2)
-    suite5 = unittest.TestLoader().loadTestsFromTestCase(TestTournamentWinner)
-    all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5])
+    suite4 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum)
+    suite5 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum2)
+    suite6 = unittest.TestLoader().loadTestsFromTestCase(TestTournamentWinner)
+    all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5, suite6])
     unittest.TextTestRunner().run(all_tests)
 
 # <<
