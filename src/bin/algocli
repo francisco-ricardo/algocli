@@ -2,8 +2,43 @@
 """
 Algorithm CLI
 
-This script provides a command-line interface (CLI) for various algorithmic functions. 
-It allows the user to run the algorithms and unit tests from the command line.
+This script provides a command-line interface (CLI) for various
+algorithmic functions. It allows the user to run the algorithms and
+unit tests from the command line.
+
+Sub-commands:
+    - is_valid_subsequence: Check if a sequence is a valid subsequence
+      of another sequence.
+        Example:
+            python algocli is_valid_subsequence "1,2,3,4" "2,4"
+    - non_constructible_change: Find the minimum non-constructible
+      change that cannot be created with given coins.
+        Example:
+            python algocli non_constructible_change "1,2,5"
+    - sorted_squared_array: Return a sorted array of the squares of
+      the input array.
+        Example:
+            python algocli sorted_squared_array "-4,-1,0,3,10"
+    - two_numbers_sum: Find two numbers in the list that sum to the
+      target value.
+        Example:
+            python algocli two_numbers_sum "3,5,-4,8,11,1,-1,6" 10
+    - two_numbers_sum_2: Find two numbers in the list that sum to the
+      target value.
+        Example:
+            python algocli two_numbers_sum_2 "3,5,-4,8,11,1,-1,6" 10
+    - tournament_winner: Determine the winner of a tournament based
+      on competition results.
+        Example:
+            python algocli tournament_winner -i "HTML,CSS,0" -i
+            "CSS,Python,1" -i "Python,HTML,1"
+    - remove_duplicates_from_sorted_array: Remove duplicates from a
+      sorted array in place.
+        Example:
+            python algocli remove_duplicates_from_sorted_array "1,1,2"
+    - test: Run unit tests for the algorithms.
+        Example:
+            python algocli test
 """
 
 import argparse
@@ -33,8 +68,9 @@ def main():
     Parses command-line arguments and executes the corresponding function.
     """
 
+    #
     # Command line arguments definition
-    # >>>
+    #
 
     parser = argparse.ArgumentParser(description='Algorithm CLI')
     subparsers = parser.add_subparsers(dest='command')
@@ -116,42 +152,30 @@ def main():
     
     args = parser.parse_args()
     
-    # <<
-
 
     # Execute the selected command
-    # >>>
-
     if args.command == 'non_constructible_change':
-        run_non_constructible_change(args)
-    
+        run_non_constructible_change(args)    
     elif args.command == 'is_valid_subsequence':
         run_is_valid_subsequence(args)
-
     elif args.command == 'sorted_squared_array':
         run_sorted_squared_array(args)
-
     elif args.command == 'two_numbers_sum':
         run_two_numbers_sum(args)
-
     elif args.command == 'two_numbers_sum_2':
         run_two_numbers_sum_2(args)
-
     elif args.command == 'tournament_winner':
         run_tournament_winner(args.input)
-
     elif args.command == 'remove_duplicates_from_sorted_array':
         print(args)
         run_remove_duplicates_from_sorted_array(args)
-
     elif args.command == 'test':
         run_test()
 
-    # <<
 
-
+#
 # Functions Definitions
-# >>>
+#
 
 def run_non_constructible_change(args: str) -> None:
     """
@@ -244,11 +268,10 @@ def run_test() -> None:
     all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5, suite6, suite7])
     unittest.TextTestRunner().run(all_tests)
 
-# <<
 
-
+#
 # Helper functions
-# >>>
+#
 
 def args_list_generator(args: str) -> Generator[str, None, None]:
     """
@@ -269,8 +292,6 @@ def parse_args_as_int(args: str) -> list[int]:
     Parses a comma-separated string into a list of integers.
     """
     return [int(item) for item in args_list_generator(args)]
-
-# <<
 
 
 if __name__ == '__main__':
