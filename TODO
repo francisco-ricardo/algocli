@@ -1,0 +1,15 @@
+# TODO List
+
+- [ ] Rename the repo to `algocli`.
+- [ ] Fix the `remove_duplicates_from_sorted_array` algorithm implementation.
+- [ ] Generate a DockerHub image for easy distribution and usage.
+- [ ] Improve the README file to better showcase the repository's purpose and usage.
+- [ ] Add more algorithms to the repository.
+- [ ] Ensure all algorithms have comprehensive unit tests.
+- [ ] Document how to run unit tests using the following command:
+      ```bash
+      python src/bin/algocli test
+      ```
+- [ ] Add examples and complexity analysis for each algorithm in the README.
+- [ ] Create a CONTRIBUTING.md file to guide contributors.
+- [ ] Automate CI/CD pipelines for testing and Docker image publishing.
