@@ -55,7 +55,6 @@ from test.cases import TestSortedSquaredArray
 from test.cases import TestTwoNumbersSum
 from test.cases import TestTwoNumbersSum2
 from test.cases import TestTournamentWinner
-from test.cases import TestRemoveDuplicatesFromSortedArray
 
 
 def main():

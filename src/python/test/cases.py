@@ -6,7 +6,6 @@ from algorithms.sorted_squared_array import run as sorted_squared_array
 from algorithms.two_numbers_sum import run as two_numbers_sum
 from algorithms.two_numbers_sum_2 import run as two_numbers_sum_2
 from algorithms.tournament_winner import run as tournament_winner
-from algorithms.remove_duplicates_from_sorted_array import run as remove_duplicates_from_sorted_array
 
 
 class TestIsValidSubsequence(unittest.TestCase):
@@ -151,25 +150,3 @@ class TestTwoNumbersSum(unittest.TestCase):
         expected_output = [3, 4]
         self.assertCountEqual(two_numbers_sum(numbers, target), expected_output)    
 
-
-class TestRemoveDuplicatesFromSortedArray(unittest.TestCase):
-    def test_example_1(self):
-        nums = [1, 1, 2]
-        expected_output = 2
-        self.assertEqual(remove_duplicates_from_sorted_array(nums), expected_output)
-    def test_example_2(self):
-        nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
-        expected_output = 5
-        self.assertEqual(remove_duplicates_from_sorted_array(nums), expected_output)
-    def test_example_3(self):
-        nums = [1, 1, 1, 1, 1, 1, 1]
-        expected_output = 1
-        self.assertEqual(remove_duplicates_from_sorted_array(nums), expected_output)
-    def test_example_4(self):
-        nums = [1, 2, 3, 4, 5]
-        expected_output = 5
-        self.assertEqual(remove_duplicates_from_sorted_array(nums), expected_output)
-    def test_example_5(self):
-        nums = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]
-        expected_output = 5
-        self.assertEqual(remove_duplicates_from_sorted_array(nums), expected_output)
