@@ -32,10 +32,6 @@ Sub-commands:
         Example:
             python algocli tournament_winner -i "HTML,CSS,0" -i
             "CSS,Python,1" -i "Python,HTML,1"
-    - remove_duplicates_from_sorted_array: Remove duplicates from a
-      sorted array in place.
-        Example:
-            python algocli remove_duplicates_from_sorted_array "1,1,2"
     - test: Run unit tests for the algorithms.
         Example:
             python algocli test
@@ -52,7 +48,6 @@ from algorithms.sorted_squared_array import run as sorted_squared_array
 from algorithms.two_numbers_sum import run as two_numbers_sum   
 from algorithms.two_numbers_sum_2 import run as two_numbers_sum_2
 from algorithms.tournament_winner import run as tournament_winner
-from algorithms.remove_duplicates_from_sorted_array import run as remove_duplicates_from_sorted_array
 
 from test.cases import TestIsValidSubsequence
 from test.cases import TestNonConstructibleChange
@@ -137,14 +132,6 @@ def main():
         help="""A string consisting of the home team, the away team and the result, separated by commas. 
         Example: 'C#, Python, 1'""")
     
-    # Sub-command: remove_duplicates_from_sorted_array
-    parser_remove_duplicates_from_sorted_array = subparsers.add_parser('remove_duplicates_from_sorted_array', 
-        help='Remove duplicates from a sorted array in place',
-        description="""Remove duplicates from a sorted array in place.
-                    Example: algocli remove_duplicates_from_sorted_array '1,1,2'""")
-    parser_remove_duplicates_from_sorted_array.add_argument('nums', type=str, 
-        help="List of integers separated by comma. Example: '1,1,2'")
-
     # Sub-command: test
     parser_test = subparsers.add_parser('test', 
         help='Run unit tests for the algorithms',
@@ -166,9 +153,6 @@ def main():
         run_two_numbers_sum_2(args)
     elif args.command == 'tournament_winner':
         run_tournament_winner(args.input)
-    elif args.command == 'remove_duplicates_from_sorted_array':
-        print(args)
-        run_remove_duplicates_from_sorted_array(args)
     elif args.command == 'test':
         run_test()
 
@@ -245,15 +229,6 @@ def run_tournament_winner(args: list[str]) -> None:
     print(f'Tournament winner: {result}')
 
 
-def run_remove_duplicates_from_sorted_array(args: str) -> None:
-    """
-    Executes the remove_duplicates_from_sorted_array algorithm.
-    """
-    nums: list[int] = parse_args_as_int(args.nums)
-    result: int = remove_duplicates_from_sorted_array(nums)
-    print(f'Array after removing duplicates: {nums[:result]}')
-
-
 def run_test() -> None:
     """
     Runs unit tests for all algorithms.
@@ -264,8 +239,7 @@ def run_test() -> None:
     suite4 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum)
     suite5 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum2)
     suite6 = unittest.TestLoader().loadTestsFromTestCase(TestTournamentWinner)
-    suite7 = unittest.TestLoader().loadTestsFromTestCase(TestRemoveDuplicatesFromSortedArray)
-    all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5, suite6, suite7])
+    all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5, suite6])
     unittest.TextTestRunner().run(all_tests)
 
 
