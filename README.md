@@ -215,6 +215,13 @@ This repository demonstrates:
 
 ---
 
+## 🤝 Contributing
+
+Contributions are welcome! If you have suggestions for improvements or new 
+algorithms to add, feel free to open an issue or submit a pull request.
+
+---
+
 ## 📜 License
 
 This repository is licensed under the MIT License. You are free to clone, 
@@ -223,16 +230,19 @@ more details.
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! If you have suggestions for improvements or new 
-algorithms to add, feel free to open an issue or submit a pull request.
-
----
-
 ### 🚧 Under Construction
 
 This repository is actively being developed, and new algorithms will be added 
 regularly. Stay tuned for updates, and feel free to suggest algorithms or 
 improvements by opening an issue or submitting a pull request.
+
+---
+
+## 📬 Contact
+
+If you have any questions or feedback, feel free to reach out:
+
+- **GitHub**: [francisco-ricardo](https://github.com/francisco-ricardo)
+- **Email**: franciscoricardo.dev@gmail.com
+- **LinkedIn**: [francisco-aguiar](www.linkedin.com/in/francisco-aguiar-3ab650a0)
 
