@@ -1,18 +1,18 @@
 # Makefile Documentation
 # This Makefile provides a simple interface for managing the project using Docker.
 
-.PHONY: all run help
+.PHONY: all up help
 
 
-# target: all - Executes the run
-all: run
+# target: all - Executes the up
+all: up
 
 
-# target: run - Builds and starts the Docker container
+# target: up - Builds and starts the Docker container
 # Description: This target builds and starts the Docker container using the
 # docker-compose command. The -d flag runs the containers in detached mode,
 # allowing them to run in the background.
-run:
+up:
 	docker-compose -f compose.yaml up --build -d
 
 
