@@ -48,6 +48,7 @@ from algorithms.sorted_squared_array import run as sorted_squared_array
 from algorithms.two_numbers_sum import run as two_numbers_sum   
 from algorithms.two_numbers_sum_2 import run as two_numbers_sum_2
 from algorithms.tournament_winner import run as tournament_winner
+from algorithms.is_palindrome import run as is_palindrome
 
 from test.cases import TestIsValidSubsequence
 from test.cases import TestNonConstructibleChange
@@ -55,6 +56,7 @@ from test.cases import TestSortedSquaredArray
 from test.cases import TestTwoNumbersSum
 from test.cases import TestTwoNumbersSum2
 from test.cases import TestTournamentWinner
+from test.cases import TestIsPalindrome
 
 
 def main():
@@ -131,6 +133,15 @@ def main():
         help="""A string consisting of the home team, the away team and the result, separated by commas. 
         Example: 'C#, Python, 1'""")
     
+    # Sub-command: is_palindrome
+    parser_is_palindrome = subparsers.add_parser('is_palindrome',
+        help='Check if a string is a palindrome',
+        description="""Check if a string is a palindrome.
+                    Example:
+                    algocli is_palindrome "A man, a plan, a canal: Panama""")
+    parser_is_palindrome.add_argument('s', type=str,
+        help="""A string consisting of the phrase to check.""")
+    
     # Sub-command: test
     parser_test = subparsers.add_parser('test', 
         help='Run unit tests for the algorithms',
@@ -152,6 +163,8 @@ def main():
         run_two_numbers_sum_2(args)
     elif args.command == 'tournament_winner':
         run_tournament_winner(args.input)
+    elif args.command == 'is_palindrome':
+        run_is_palindrome(args)
     elif args.command == 'test':
         run_test()
 
@@ -228,6 +241,15 @@ def run_tournament_winner(args: list[str]) -> None:
     print(f'Tournament winner: {result}')
 
 
+def run_is_palindrome(args: str) -> None:
+    """
+    Executes the is_palindrome algorithm.
+    """
+    s: str = args.s
+    result: bool = is_palindrome(s)
+    print(f'Is palindrome: {result}')
+
+
 def run_test() -> None:
     """
     Runs unit tests for all algorithms.
@@ -238,7 +260,8 @@ def run_test() -> None:
     suite4 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum)
     suite5 = unittest.TestLoader().loadTestsFromTestCase(TestTwoNumbersSum2)
     suite6 = unittest.TestLoader().loadTestsFromTestCase(TestTournamentWinner)
-    all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5, suite6])
+    suite7 = unittest.TestLoader().loadTestsFromTestCase(TestIsPalindrome)
+    all_tests= unittest.TestSuite([suite1, suite2, suite3, suite4, suite5, suite6, suite7])
     unittest.TextTestRunner().run(all_tests)
 
 

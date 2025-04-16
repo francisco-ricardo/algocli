@@ -1,5 +1,6 @@
 import unittest
 
+from algorithms.is_palindrome import run as is_palindrome
 from algorithms.is_valid_subsequence import run as is_valid_subsequence
 from algorithms.non_constructible_change import run as non_constructible_change
 from algorithms.sorted_squared_array import run as sorted_squared_array
@@ -150,3 +151,9 @@ class TestTwoNumbersSum(unittest.TestCase):
         expected_output = [3, 4]
         self.assertCountEqual(two_numbers_sum(numbers, target), expected_output)    
 
+
+class TestIsPalindrome(unittest.TestCase):
+    def test_example_1(self):
+        s = "A man, a plan, a canal: Panama"
+        expected_output = True
+        self.assertEqual(is_palindrome(s), expected_output)
