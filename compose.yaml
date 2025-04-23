@@ -2,10 +2,10 @@ version: "3.3"
 
 services:
 
-  algorithms:
+  algocli:
 
-    container_name: algorithms
-    image: algorithms:latest
+    container_name: algocli
+    image: algocli:latest
     restart: unless-stopped
 
     build:
@@ -16,4 +16,4 @@ services:
       - .env
 
     volumes:
-      - .:/algorithms
+      - .:/algocli

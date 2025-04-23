@@ -10,8 +10,8 @@ RUN apt update -y && apt install -y \
 RUN python -m pip install --upgrade pip && \
     pip install ipython pylint pep8 flake8 sly
 
-ENTRYPOINT ["/algorithms/scripts/docker-entrypoint.sh"]
-CMD ["/algorithms/scripts/docker-cmd-script.sh"]
+ENTRYPOINT ["/algocli/scripts/docker-entrypoint.sh"]
+CMD ["/algocli/scripts/docker-cmd-script.sh"]
 
 # EOF
 
